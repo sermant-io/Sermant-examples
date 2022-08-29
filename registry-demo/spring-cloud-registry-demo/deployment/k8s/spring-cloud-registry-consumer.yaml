@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-cloud-registry-consumer
+  labels:
+    app: spring-cloud-registry-consumer
+spec:
+  type: NodePort
+  ports:
+    - port: 8161
+      nodePort: 30000
+      name: spring-cloud-registry-consumer-test
+  selector:
+    app: spring-cloud-registry-consumer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-registry-consumer
+  labels:
+    app: spring-cloud-registry-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cloud-registry-consumer
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-registry-consumer
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: spring-cloud-registry-consumer
+          image: spring-cloud-registry-consumer:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8161
+      imagePullSecrets:
+        - name: default-secret

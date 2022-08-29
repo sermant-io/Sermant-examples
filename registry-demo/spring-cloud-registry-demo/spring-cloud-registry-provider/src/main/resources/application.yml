@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-cloud-registry-provider
+
+server:
+  port: 8162
