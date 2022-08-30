@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: dubbo-a
+server:
+  port: 28020
+dubbo:
+  application:
+    name: dubbo-a
+  protocol:
+    port: 28820
+    name: dubbo
+  registry:
+    address: sc://127.0.0.1:30100

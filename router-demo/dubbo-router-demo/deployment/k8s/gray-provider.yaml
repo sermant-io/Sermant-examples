@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gray-dubbo-b
+  labels:
+    app: gray-dubbo-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gray-dubbo-b
+  template:
+    metadata:
+      labels:
+        app: gray-dubbo-b
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: gray-dubbo-b
+          image: dubbo-b:1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: "SERVICE_META_VERSION"
+              value: "1.0.1"
+      imagePullSecrets:
+        - name: default-secret

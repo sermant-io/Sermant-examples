@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-a
+  labels:
+    app: dubbo-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dubbo-a
+  template:
+    metadata:
+      labels:
+        app: dubbo-a
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: dubbo-a
+          image: dubbo-a:1.0.0
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: default-secret
