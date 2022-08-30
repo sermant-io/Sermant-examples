@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-registry-provider
+  labels:
+    app: spring-cloud-registry-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cloud-registry-provider
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-registry-provider
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: spring-cloud-registry-provider
+          image: spring-cloud-registry-provider:1.0.0
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: default-secret

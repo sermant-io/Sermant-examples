@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dubbo-registry-consumer
+  labels:
+    app: dubbo-registry-consumer
+spec:
+  type: NodePort
+  ports:
+    - port: 28820
+      nodePort: 30000
+      name: dubbo-registry-consumer-test
+  selector:
+    app: dubbo-registry-consumer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-registry-consumer
+  labels:
+    app: dubbo-registry-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dubbo-registry-consumer
+  template:
+    metadata:
+      labels:
+        app: dubbo-registry-consumer
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: dubbo-registry-consumer
+          image: dubbo-registry-consumer:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 28820
+      imagePullSecrets:
+        - name: default-secret
