@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-cloud-gateway
+  labels:
+    app: spring-cloud-gateway
+spec:
+  type: NodePort
+  ports:
+    - port: 28030
+      nodePort: 30000
+      name: spring-cloud-gateway
+  selector:
+    app: spring-cloud-gateway
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-gateway
+  labels:
+    app: spring-cloud-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cloud-gateway
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-gateway
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: spring-cloud-gateway
+          image: spring-cloud-gateway:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 28030
+      imagePullSecrets:
+        - name: default-secret
