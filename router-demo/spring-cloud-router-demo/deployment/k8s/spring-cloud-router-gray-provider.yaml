@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gray-dubbo-b
+  name: spring-cloud-router-gray-provider
   labels:
-    app: gray-dubbo-b
+    app: spring-cloud-router-gray-provider
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gray-dubbo-b
+      app: spring-cloud-router-gray-provider
   template:
     metadata:
       labels:
-        app: gray-dubbo-b
+        app: spring-cloud-router-gray-provider
         sermant-injection: enabled
     spec:
       containers:
-        - name: gray-dubbo-b
-          image: dubbo-b:1.0.0
+        - name: spring-cloud-router-gray-provider
+          image: spring-cloud-router-provider:1.0.0
           imagePullPolicy: IfNotPresent
           env:
             - name: "SERVICE_META_VERSION"

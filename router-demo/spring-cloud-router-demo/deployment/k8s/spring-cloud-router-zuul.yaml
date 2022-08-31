@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-cloud-router-zuul
+  labels:
+    app: spring-cloud-router-zuul
+spec:
+  type: NodePort
+  ports:
+    - port: 8170
+      nodePort: 30000
+      name: zuul-test
+  selector:
+    app: spring-cloud-router-zuul
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-router-zuul
+  labels:
+    app: spring-cloud-router-zuul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cloud-router-zuul
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-router-zuul
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: spring-cloud-router-zuul
+          image: spring-cloud-router-zuul:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8170
+      imagePullSecrets:
+        - name: default-secret

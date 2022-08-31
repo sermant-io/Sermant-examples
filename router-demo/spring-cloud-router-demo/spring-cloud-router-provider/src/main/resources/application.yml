@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-cloud-router-provider
+
+server:
+  port: 8162
+
+feign:
+  hystrix:
+    enabled: true

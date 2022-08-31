@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spring-cloud-router-zuul
+
+server:
+  port: 8170
+
+feign:
+  hystrix:
+    enabled: true
+
+zuul:
+  routes:
+    spring-cloud-router-consumer: /consumer/**
+    spring-cloud-router-provider: /provider/**
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000
