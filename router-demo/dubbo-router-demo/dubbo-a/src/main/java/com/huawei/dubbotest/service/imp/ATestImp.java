@@ -3,11 +3,13 @@ package com.huawei.dubbotest.service.imp;
 import com.huawei.dubbotest.domain.Test;
 import com.huawei.dubbotest.service.ATest;
 import com.huawei.dubbotest.service.BTest;
+
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 @Component
 public class ATestImp implements ATest {

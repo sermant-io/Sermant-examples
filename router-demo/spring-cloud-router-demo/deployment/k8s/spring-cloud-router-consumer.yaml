@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-router-consumer
+  labels:
+    app: spring-cloud-router-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cloud-router-consumer
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-router-consumer
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: spring-cloud-router-consumer
+          image: spring-cloud-router-consumer:1.0.0
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: default-secret

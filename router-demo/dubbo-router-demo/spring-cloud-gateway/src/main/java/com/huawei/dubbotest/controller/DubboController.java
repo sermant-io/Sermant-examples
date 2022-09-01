@@ -18,17 +18,19 @@ package com.huawei.dubbotest.controller;
 
 import com.huawei.dubbotest.domain.Test;
 import com.huawei.dubbotest.service.ATest;
+
 import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.annotation.Resource;
 
 @RestController
 public class DubboController {
