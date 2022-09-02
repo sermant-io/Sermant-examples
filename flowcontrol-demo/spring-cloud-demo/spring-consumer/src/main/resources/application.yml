@@ -1,0 +1,11 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: spring-flow-consumer
+  cloud:
+    zookeeper:
+      enabled: true
+feign:
+  hystrix:
+    enabled: true
