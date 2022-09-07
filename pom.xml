@@ -12,6 +12,7 @@
         <module>sermant-test</module>
         <module>registry-demo</module>
         <module>router-demo</module>
+        <module>flowcontrol-demo</module>
     </modules>
 
     <properties>
