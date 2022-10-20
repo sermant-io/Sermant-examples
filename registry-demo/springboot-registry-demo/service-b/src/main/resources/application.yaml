@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-b
+server:
+  port: 8006
+config:
+  domain: www.domain.com
+  downStream: service-b
+  sleepMs: 1

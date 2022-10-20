@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: service-a
+server:
+  port: 8005
+
+config:
+  domain: www.domain.com
+  downStreamB: service-b
+  downStreamC: service-c
+  sleepMs: 1
+  gateWayPort: 9000
+  timeout: 2600
+  port1: 8206
+  port2: 8207
+  futureTimeout: 10
