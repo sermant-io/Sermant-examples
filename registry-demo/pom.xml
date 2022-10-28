@@ -14,6 +14,7 @@
     <modules>
         <module>dubbo-registry-demo</module>
         <module>spring-cloud-registry-demo</module>
+        <module>dubbo-2-5-registry-demo</module>
     </modules>
 
     <properties>

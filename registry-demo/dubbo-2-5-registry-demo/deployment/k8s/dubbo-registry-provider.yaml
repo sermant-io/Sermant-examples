@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-2-5-provider
+  labels:
+    app: dubbo-2-5-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dubbo-2-5-provider
+  template:
+    metadata:
+      labels:
+        app: dubbo-2-5-provider
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: dubbo-2-5-provider
+          image: dubbo-2-5-provider:1.0.0
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: default-secret

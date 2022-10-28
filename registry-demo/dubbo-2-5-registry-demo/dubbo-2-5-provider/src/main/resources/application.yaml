@@ -1,0 +1,19 @@
+server:
+  port: 28021
+dubbo:
+  protocol:
+    port: ${DUBBO_PROTOCOL_PORT:28821}
+
+spring:
+  application:
+    name: dubbo-2-5-provider
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
