@@ -3,21 +3,13 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.huaweicloud.sermant.examples</groupId>
-    <artifactId>sermant-examples</artifactId>
+    <groupId>com.nacos.demo</groupId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>sermant-template</module>
-        <module>registry-demo</module>
-        <module>router-demo</module>
-        <module>flowcontrol-demo</module>
-        <module>grace-demo/spring-grace-nacos-demo</module>
-    </modules>
-
+    <artifactId>nacos-common</artifactId>
+    <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
 </project>
