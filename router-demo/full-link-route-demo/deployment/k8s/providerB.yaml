@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: providerB
+  labels:
+    app: providerB
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: providerB
+  template:
+    metadata:
+      labels:
+        app: providerB
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: providerB
+          image: providerB:1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: "SERVICE_META_VERSION"
+              value: "1.0.0"
+            - name: "SERVICE_META_PARAMETERS"
+              value: "group:base"
+      imagePullSecrets:
+        - name: default-secret
