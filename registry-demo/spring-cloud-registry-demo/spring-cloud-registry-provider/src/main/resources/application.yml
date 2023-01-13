@@ -1,6 +1,9 @@
 spring:
   application:
     name: spring-cloud-registry-provider
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
 
 server:
   port: 8162
