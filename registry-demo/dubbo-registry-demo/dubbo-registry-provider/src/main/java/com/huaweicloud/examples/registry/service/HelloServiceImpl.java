@@ -18,6 +18,10 @@ package com.huaweicloud.examples.registry.service;
 
 import com.huaweicloud.examples.registry.api.HelloService;
 
+import org.apache.dubbo.config.RegistryConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * 测试接口
  *
@@ -25,8 +29,17 @@ import com.huaweicloud.examples.registry.api.HelloService;
  * @since 2022-08-29
  */
 public class HelloServiceImpl implements HelloService {
+    @Autowired
+    private RegistryConfig registryConfig;
+
+    @Value("${dubbo.application.name}")
+    private String name;
+
+    @Value("${dubbo.protocol.port}")
+    private String port;
+
     @Override
     public String hello() {
-        return "Hello world!";
+        return "I'm " + name + ", my registry center is " + registryConfig.getProtocol() + ", my port is " + port + ".";
     }
 }
