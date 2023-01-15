@@ -12,7 +12,7 @@
     <artifactId>template-plugin</artifactId>
 
     <properties>
-        <sermant.basedir>${pom.basedir}/../..</sermant.basedir>
+        <output.basedir>${pom.basedir}/../..</output.basedir>
         <package.plugin.name>template</package.plugin.name>
         <package.plugin.type>plugin</package.plugin.type>
         <config.skip.flag>false</config.skip.flag>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.huaweicloud.sermant</groupId>
             <artifactId>sermant-agentcore-core</artifactId>
-            <version>0.7.0</version>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

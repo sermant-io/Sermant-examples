@@ -13,6 +13,7 @@
         <module>registry-demo</module>
         <module>router-demo</module>
         <module>flowcontrol-demo</module>
+        <module>sermant-demo</module>
         <module>grace-demo/spring-grace-nacos-demo</module>
     </modules>
 

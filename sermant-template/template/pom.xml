@@ -17,10 +17,10 @@
     </modules>
 
     <properties>
-        <sermant.basedir>${pom.basedir}/..</sermant.basedir>
+        <output.basedir>${pom.basedir}/..</output.basedir>
         <package.plugin.name>template</package.plugin.name>
         <shade.common.prefix>com.huaweicloud.sermant.dependencies</shade.common.prefix>
-        <package.plugin.dir>${sermant.basedir}/agent/pluginPackage</package.plugin.dir>
+        <package.plugin.dir>${output.basedir}/agent/pluginPackage</package.plugin.dir>
         <package.plugin.type>undefined</package.plugin.type>
         <package.output.dir>${package.plugin.dir}/${package.plugin.name}/${package.plugin.type}</package.output.dir>
         <package.plugin.version>${project.version}</package.plugin.version>
@@ -44,7 +44,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${sermant.basedir}/agent/config</outputDirectory>
+                            <outputDirectory>${output.basedir}/agent/config</outputDirectory>
                             <overwrite>true</overwrite>
                             <resources>
                                 <resource>
@@ -76,7 +76,7 @@
                         <configuration>
                             <filesets>
                                 <fileset>
-                                    <directory>${sermant.basedir}/agent</directory>
+                                    <directory>${output.basedir}/agent</directory>
                                 </fileset>
                             </filesets>
                         </configuration>
@@ -102,27 +102,35 @@
                         <artifactItem>
                             <groupId>com.huaweicloud.sermant</groupId>
                             <artifactId>sermant-agentcore-premain</artifactId>
-                            <version>0.7.0</version>
+                            <version>1.0.0</version>
                             <type>jar</type>
                             <overWrite>false</overWrite>
-                            <outputDirectory>${sermant.basedir}/agent</outputDirectory>
+                            <outputDirectory>${output.basedir}/agent</outputDirectory>
                             <destFileName>sermant-agent.jar</destFileName>
                         </artifactItem>
                         <artifactItem>
                             <groupId>com.huaweicloud.sermant</groupId>
                             <artifactId>sermant-agentcore-core</artifactId>
-                            <version>0.7.0</version>
+                            <version>1.0.0</version>
                             <type>jar</type>
                             <overWrite>false</overWrite>
-                            <outputDirectory>${sermant.basedir}/agent/core</outputDirectory>
+                            <outputDirectory>${output.basedir}/agent/core</outputDirectory>
                         </artifactItem>
                         <artifactItem>
                             <groupId>com.huaweicloud.sermant</groupId>
                             <artifactId>sermant-agentcore-implement</artifactId>
-                            <version>0.7.0</version>
+                            <version>1.0.0</version>
                             <type>jar</type>
                             <overWrite>false</overWrite>
-                            <outputDirectory>${sermant.basedir}/agent/implement</outputDirectory>
+                            <outputDirectory>${output.basedir}/agent/implement</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.huaweicloud.sermant</groupId>
+                            <artifactId>sermant-common</artifactId>
+                            <version>1.0.0</version>
+                            <type>jar</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${output.basedir}/agent/common</outputDirectory>
                         </artifactItem>
                     </artifactItems>
                 </configuration>

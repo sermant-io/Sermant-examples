@@ -1,0 +1,3 @@
+com.huaweicloud.sermant.examples.demo.service.DemoSimpleService
+com.huaweicloud.sermant.examples.demo.service.DemoHeartBeatService
+com.huaweicloud.sermant.examples.demo.service.DemoDynaConfService

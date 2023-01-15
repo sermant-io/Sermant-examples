@@ -14,8 +14,7 @@
 
     <modules>
         <module>template</module>
-        <module>demo-application</module>
-        <module>demo-register</module>
+        <module>application</module>
     </modules>
 
     <properties>

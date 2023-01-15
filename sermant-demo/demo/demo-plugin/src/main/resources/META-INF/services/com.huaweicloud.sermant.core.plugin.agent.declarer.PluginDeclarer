@@ -1,0 +1,8 @@
+com.huaweicloud.sermant.examples.demo.declarer.DemoAnnotationDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoNameDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoSuperTypeDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoTraceDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoBootstrapDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoNameInfixDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoNamePrefixDeclarer
+com.huaweicloud.sermant.examples.demo.declarer.DemoNameSuffixDeclarer
