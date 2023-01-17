@@ -20,6 +20,7 @@ package com.huaweicloud.examples.flow.provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +42,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @ResponseBody
+@RefreshScope
 public class FlowController {
     private static final long DEFAULT_SLEEP_MS = 150L;
 
@@ -50,6 +52,9 @@ public class FlowController {
 
     @Value("${server.port}")
     int port;
+
+    @Value("${sermant}")
+    private Object sermant;
 
     /**
      * 流控测试接口
@@ -67,6 +72,7 @@ public class FlowController {
         if (exRate != null && GAP - exRate < Math.random() * GAP) {
             throw new Exception("need retry");
         }
+        LOGGER.info((String) sermant);
         return "Hello, I am zk rest template provider, my port is " + port;
     }
 
