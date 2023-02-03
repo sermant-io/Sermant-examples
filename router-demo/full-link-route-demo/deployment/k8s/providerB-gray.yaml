@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: providerB-gray
+  labels:
+    app: providerB-gray
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: providerB-gray
+  template:
+    metadata:
+      labels:
+        app: providerB-gray
+        sermant-injection: enabled
+    spec:
+      containers:
+        - name: providerB-gray
+          image: providerB-gray:1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: "SERVICE_META_VERSION"
+              value: "2.0.0"
+            - name: "SERVICE_META_PARAMETERS"
+              value: "group:gray"
+      imagePullSecrets:
+        - name: default-secret
