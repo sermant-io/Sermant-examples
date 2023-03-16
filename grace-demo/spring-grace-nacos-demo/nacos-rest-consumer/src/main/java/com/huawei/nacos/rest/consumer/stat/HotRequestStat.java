@@ -20,8 +20,6 @@ package com.huawei.nacos.rest.consumer.stat;
 import com.huawei.nacos.rest.consumer.entity.MyHashMap;
 import com.huawei.nacos.rest.consumer.entity.ResponseInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,9 +69,9 @@ public class HotRequestStat extends BaseRequestStat {
     @Override
     public String toString() {
         return "HotRequestStat{"
-                + "所有请求数=" + allCount
-                + ", 请求接口='" + resource + '\''
-                + ", 请求统计=" + request
+                + "allCount=" + allCount
+                + ", resource='" + resource + '\''
+                + ", request=" + request
                 + '}';
     }
 
@@ -83,19 +81,14 @@ public class HotRequestStat extends BaseRequestStat {
      * @since 2022-06-11
      */
     static class ServiceStatic {
-        @JSONField(name = "是否开启预热")
         private final boolean enableWarmUp;
 
-        @JSONField(name = "服务名")
         private final String serviceName;
 
-        @JSONField(name = "QPS")
         private int qps;
 
-        @JSONField(name = "实例")
         private String endpoint;
 
-        @JSONField(name = "请求数")
         private AtomicLong requestCount = new AtomicLong();
 
         ServiceStatic(String endpoint, boolean enableWarmUp, String serviceName, int qps) {
@@ -140,10 +133,10 @@ public class HotRequestStat extends BaseRequestStat {
         @Override
         public String toString() {
             return "ServiceStatic{"
-                    + "是否开启预热=" + enableWarmUp
+                    + "enableWarmUp=" + enableWarmUp
                     + ", qps=" + qps
-                    + ", 实例地址='" + endpoint + '\''
-                    + ", 请求数=" + requestCount
+                    + ", endpoint='" + endpoint + '\''
+                    + ", requestCount=" + requestCount
                     + '}';
         }
     }

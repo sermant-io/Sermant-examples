@@ -19,8 +19,6 @@ package com.huawei.nacos.rest.consumer.stat;
 
 import com.huawei.nacos.rest.consumer.entity.ResponseInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -30,10 +28,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2022-06-20
  */
 public class DefaultRequestStat extends BaseRequestStat {
-    @JSONField(name = "错误数")
     protected final AtomicInteger errorCount = new AtomicInteger();
 
-    @JSONField(name = "成功数")
     protected final AtomicInteger successCount = new AtomicInteger();
 
     /**

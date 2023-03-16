@@ -22,7 +22,7 @@ spec:
           env:
             - name: "SERVICE_META_VERSION"
               value: "1.0.1"
-            - name: "SERVICECOMB_INSTANCE_PROPS"
+            - name: "SERVICE_META_PARAMETERS"
               value: "group:gray"
       imagePullSecrets:
         - name: default-secret
