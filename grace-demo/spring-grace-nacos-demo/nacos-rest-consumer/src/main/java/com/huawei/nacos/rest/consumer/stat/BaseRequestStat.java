@@ -19,8 +19,6 @@ package com.huawei.nacos.rest.consumer.stat;
 
 import com.huawei.nacos.rest.consumer.entity.ResponseInfo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -31,10 +29,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2022-06-17
  */
 public class BaseRequestStat implements Serializable, RequestStat {
-    @JSONField(name = "总请求数")
     protected final AtomicInteger allCount = new AtomicInteger();
 
-    @JSONField(name = "请求接口")
     protected final String resource;
 
     /**

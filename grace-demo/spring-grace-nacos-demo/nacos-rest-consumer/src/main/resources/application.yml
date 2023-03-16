@@ -9,5 +9,4 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8852
-#        server-addr: http://mse-4b151770-p.nacos-ans.mse.aliyuncs.com:8848/
+        server-addr: localhost:8848
