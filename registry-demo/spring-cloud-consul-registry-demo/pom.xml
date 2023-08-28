@@ -18,8 +18,8 @@
   </properties>
 
   <modules>
-    <module>consumer</module>
-    <module>provider</module>
+    <module>consul-consumer</module>
+    <module>consul-provider</module>
   </modules>
 
 </project>
