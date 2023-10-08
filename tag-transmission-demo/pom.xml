@@ -2,23 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sermant-examples</artifactId>
+        <groupId>com.huaweicloud.sermant.examples</groupId>
+        <version>1.0.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.huaweicloud.sermant.examples</groupId>
-    <artifactId>sermant-examples</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
+    <artifactId>tag-transmission-demo</artifactId>
+
     <modules>
-        <module>sermant-template</module>
-        <module>registry-demo</module>
-        <module>router-demo</module>
-        <module>flowcontrol-demo</module>
-        <module>grace-demo/spring-grace-nacos-demo</module>
-        <module>tag-transmission-demo</module>
+        <module>http-client-demo</module>
+        <module>http-server-demo</module>
     </modules>
+
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
 </project>
