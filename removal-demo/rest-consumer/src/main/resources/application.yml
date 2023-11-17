@@ -1,0 +1,6 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: rest-consumer
+timeout: 1000
