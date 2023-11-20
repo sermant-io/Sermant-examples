@@ -15,7 +15,9 @@
         <module>flowcontrol-demo</module>
         <module>grace-demo/spring-grace-nacos-demo</module>
         <module>tag-transmission-demo</module>
+        <module>visibility-demo</module>
         <module>removal-demo</module>
+        <module>monitor-demo</module>
     </modules>
 
     <properties>
