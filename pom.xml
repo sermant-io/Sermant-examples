@@ -17,6 +17,7 @@
         <module>tag-transmission-demo</module>
         <module>visibility-demo</module>
         <module>removal-demo</module>
+        <module>monitor-demo</module>
     </modules>
 
     <properties>
