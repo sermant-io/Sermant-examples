@@ -1,5 +1,6 @@
 server:
   port: 8003
+sermant: sermant
 spring:
   application:
     name: spring-flow-provider

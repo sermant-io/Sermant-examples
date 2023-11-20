@@ -16,6 +16,7 @@
         <module>grace-demo/spring-grace-nacos-demo</module>
         <module>tag-transmission-demo</module>
         <module>visibility-demo</module>
+        <module>removal-demo</module>
     </modules>
 
     <properties>

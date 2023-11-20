@@ -1,0 +1,6 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: rest-provider
+timeout: 0
