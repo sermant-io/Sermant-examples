@@ -1,0 +1,158 @@
+on:
+  push:
+    tags:
+      - 'v*'
+name: Create Release
+env:
+  tag: ${{ github.ref }}
+jobs:
+  auto-create-release:
+    name: Auto Create Release
+    runs-on: windows-latest
+    steps:
+      - name: save env version
+        shell: bash
+        run: |
+          str=${{env.tag}}
+          echo "version=${str##*v}" >> $GITHUB_ENV
+      - name: Checkout Source # 检出代码
+        uses: actions/checkout@v3
+      - name: Set up JDK 8 # 构建jdk运行环境
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: maven
+      - name: Create License Binary Suffix
+        run: |
+          mvn license:aggregate-add-third-party
+      - name: set version
+        run: |
+          mvn versions:set -DnewVersion='${{ env.version }}'
+      - name: Build with Maven
+        run: |
+          mvn clean package
+      - name: copy jars to package dir
+        run: |
+          bash scripts/copy_jar.sh ${{ env.version }}
+      - name: Create Release # 自动发布release版本
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # 上传release包 ========================
+      - name: Upload Release dynamic-demo # 上传dynamic-demo release包
+        id: upload-release-asset-dynamic
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-dynamic-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-dynamic-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release flowcontrol-demo # flowcontrol-demo release包
+        id: upload-release-asset-flowcontrol
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-flowcontrol-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-flowcontrol-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release grace-demo # grace-demo release包
+        id: upload-release-asset-grace
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-grace-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-grace-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release load-balance-demo # load-balance-demo release包
+        id: upload-release-asset-load-balance
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-load-balance-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-load-balance-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release monitor-demo # monitor-demo release包
+        id: upload-release-asset-monitor
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-monitor-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-monitor-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release router-demo # router-demo release包
+        id: upload-release-asset-router
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-router-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-router-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release tag-transmission-demo # tag-transmission-demo release包
+        id: upload-release-asset-tag-transmission
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-tag-transmission-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-tag-transmission-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release registry-demo # registry-demo release包
+        id: upload-release-asset-registry
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-registry-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-registry-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release springboot-registry-demo # springboot-registry-demo release包
+        id: upload-release-asset-springboot-registry
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-springboot-registry-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-springboot-registry-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release visibility-demo # visibility-demo release包
+        id: upload-release-asset-visibility
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-visibility-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-visibility-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
+      - name: Upload Release removal-demo # removal-demo release包
+        id: upload-release-asset-removal
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-removal-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-removal-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
