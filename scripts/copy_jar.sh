@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# »ñÈ¡½Å±¾ËùÔÚÄ¿Â¼µÄ¾ø¶ÔÂ·¾¶
+# è·å–è„šæœ¬æ‰€åœ¨ç›®å½•çš„ç»å¯¹è·¯å¾„
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# ×ªµ½ÏîÄ¿¸ùÄ¿Â¼
+# è½¬åˆ°é¡¹ç›®æ ¹ç›®å½•
 cd "$SCRIPT_DIR/.."
 
-# ´´½¨Ä¿Â¼ÓÃÓÚ´æ·ÅËùÓĞµÄjar°ü
+# åˆ›å»ºç›®å½•ç”¨äºå­˜æ”¾æ‰€æœ‰çš„jaråŒ…
 mkdir -p package
-# ´æ·Å×îÖÕ²úÎï
+# å­˜æ”¾æœ€ç»ˆäº§ç‰©
 mkdir -p package/result
 
-# ¶¯Ì¬ÅäÖÃ¡¢Á÷¿Ø¡¢ÎŞËğÉÏÏÂÏß¡¢¸ºÔØ¾ùºâ(sermant-template)¡¢¼à¿Ø¡¢±êÇ©Â·ÓÉ¡¢Á÷Á¿±êÇ©Í¸´«¡¢×¢²áÇ¨ÒÆ¡¢springboot×¢²á¡¢·şÎñ¿É¼ûĞÔ¡¢ÀëÈºÊµÀıÕª³ı
+# åŠ¨æ€é…ç½®ã€æµæ§ã€æ— æŸä¸Šä¸‹çº¿ã€è´Ÿè½½å‡è¡¡(sermant-template)ã€ç›‘æ§ã€æ ‡ç­¾è·¯ç”±ã€æµé‡æ ‡ç­¾é€ä¼ ã€æ³¨å†Œè¿ç§»ã€springbootæ³¨å†Œã€æœåŠ¡å¯è§æ€§ã€ç¦»ç¾¤å®ä¾‹æ‘˜é™¤
 mkdir -p package/dynamic-demo
 mkdir -p package/flowcontrol-demo
 mkdir -p package/grace-demo
@@ -23,45 +23,48 @@ mkdir -p package/registry-demo
 mkdir -p package/springboot-registry-demo
 mkdir -p package/visibility-demo
 mkdir -p package/removal-demo
+mkdir -p package/mq-consume-prohibition-demo
 
-# °´ÕÕÎÄ¼şÃûÄ£Ê½½«¶ÔÓ¦µÄjarÎÄ¼ş¸´ÖÆµ½¶ÔÓ¦Ä¿Â¼
-# ¶¯Ì¬ÅäÖÃ
+# æŒ‰ç…§æ–‡ä»¶åæ¨¡å¼å°†å¯¹åº”çš„jaræ–‡ä»¶å¤åˆ¶åˆ°å¯¹åº”ç›®å½•
+# åŠ¨æ€é…ç½®
 find . -type f -name "spring-provider.jar" -exec cp -v {} package/dynamic-demo/ \;
-# Á÷¿Ø
+# æµæ§
 find . -type f -name "spring-provider.jar" -exec cp -v {} package/flowcontrol-demo/ \;
-# ÎŞËğÉÏÏÂÏß
+# æ— æŸä¸Šä¸‹çº¿
 find . -type f -name "nacos-rest-data.jar" -exec cp -v {} package/grace-demo/ \;
 find . -type f -name "nacos-rest-consumer.jar" -exec cp -v {} package/grace-demo/ \;
 find . -type f -name "nacos-rest-provider.jar" -exec cp -v {} package/grace-demo/ \;
-# ¸ºÔØ¾ùºâ
+# è´Ÿè½½å‡è¡¡
 find . -type f -name "resttemplate-consumer.jar" -exec cp -v {} package/load-balance-demo/ \;
 find . -type f -name "resttemplate-provider.jar" -exec cp -v {} package/load-balance-demo/ \;
-# ¼à¿Ø
+# ç›‘æ§
 find . -type f -name "monitor-demo.jar" -exec cp -v {} package/monitor-demo/ \;
-# ±êÇ©Â·ÓÉ
+# æ ‡ç­¾è·¯ç”±
 find . -type f -name "spring-cloud-router-consumer.jar" -exec cp -v {} package/router-demo/ \;
 find . -type f -name "spring-cloud-router-provider.jar" -exec cp -v {} package/router-demo/ \;
 find . -type f -name "spring-cloud-router-zuul.jar" -exec cp -v {} package/router-demo/ \;
-# Á÷Á¿±êÇ©Í¸´«
+# æµé‡æ ‡ç­¾é€ä¼ 
 find . -type f -name "http-client-demo.jar" -exec cp -v {} package/tag-transmission-demo/ \;
 find . -type f -name "http-server-demo.jar" -exec cp -v {} package/tag-transmission-demo/ \;
-# ×¢²áÇ¨ÒÆ
+# æ³¨å†Œè¿ç§»
 find . -type f -name "dubbo-registry-consumer.jar" -exec cp -v {} package/registry-demo/ \;
 find . -type f -name "dubbo-registry-provider.jar" -exec cp -v {} package/registry-demo/ \;
 find . -type f -name "spring-cloud-registry-consumer.jar" -exec cp -v {} package/registry-demo/ \;
 find . -type f -name "spring-cloud-registry-provider.jar" -exec cp -v {} package/registry-demo/ \;
-# SpringBoot×¢²á
+# SpringBootæ³¨å†Œ
 find . -type f -name "service-a.jar" -exec cp -v {} package/springboot-registry-demo/ \;
 find . -type f -name "service-b.jar" -exec cp -v {} package/springboot-registry-demo/ \;
-# ·şÎñ¿É¼ûĞÔ
+# æœåŠ¡å¯è§æ€§
 find . -type f -name "dubbo-integration-provider.jar" -exec cp -v {} package/visibility-demo/ \;
 find . -type f -name "dubbo-integration-consumer.jar" -exec cp -v {} package/visibility-demo/ \;
-# ÀëÈºÊµÀıÕª³ı
+# æ¶ˆæ¯é˜Ÿåˆ—ç¦æ­¢æ¶ˆè´¹
+find . -type f -name "kafka-demo.jar" -exec cp -v {} package/mq-consume-prohibition-demo \;
+# ç¦»ç¾¤å®ä¾‹æ‘˜é™¤
 find . -type f -name "rest-consumer.jar" -exec cp -v {} package/removal-demo/ \;
 find . -type f -name "rest-provider.jar" -exec cp -v {} package/removal-demo/ \;
 
 
-# ´ò°ü
+# æ‰“åŒ…
 tar -czvf package/result/sermant-examples-dynamic-demo-$*.tar.gz -C package/dynamic-demo/ .
 tar -czvf package/result/sermant-examples-flowcontrol-demo-$*.tar.gz -C package/flowcontrol-demo/ .
 tar -czvf package/result/sermant-examples-grace-demo-$*.tar.gz -C package/grace-demo/ .
@@ -73,3 +76,4 @@ tar -czvf package/result/sermant-examples-registry-demo-$*.tar.gz -C package/reg
 tar -czvf package/result/sermant-examples-springboot-registry-demo-$*.tar.gz -C package/springboot-registry-demo/ .
 tar -czvf package/result/sermant-examples-visibility-demo-$*.tar.gz -C package/visibility-demo/ .
 tar -czvf package/result/sermant-examples-removal-demo-$*.tar.gz -C package/removal-demo/ .
+tar -czvf package/result/sermant-examples-mq-consume-prohibition-demo-$*.tar.gz -C package/mq-consume-prohibition-demo/ .
