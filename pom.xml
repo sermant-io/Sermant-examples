@@ -18,6 +18,7 @@
         <module>visibility-demo</module>
         <module>removal-demo</module>
         <module>monitor-demo</module>
+        <module>mq-consume-prohibition-demo</module>
     </modules>
 
     <properties>

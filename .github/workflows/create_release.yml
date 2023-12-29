@@ -156,3 +156,13 @@ jobs:
           asset_path: ${{ github.workspace }}/package/result/sermant-examples-removal-demo-${{ env.version }}.tar.gz
           asset_name: sermant-examples-removal-demo-${{ env.version }}.tar.gz
           asset_content_type: application/tar
+      - name: Upload Release mq-consume-prohibition-demo # mq-consume-prohibition-demo release包
+        id: upload-release-asset-mq-consume-prohibition
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-mq-consume-prohibition-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-mq-consume-prohibition-demo-${{ env.version }}.tar.gz
+          asset_content_type: application/tar
