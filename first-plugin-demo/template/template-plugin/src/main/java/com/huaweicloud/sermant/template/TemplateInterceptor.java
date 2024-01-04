@@ -54,6 +54,15 @@ public class TemplateInterceptor implements Interceptor {
                         System.out.println("插件配置项发生变化，配置项值为：" + event.getContent());
                     }
                 });
+
+        // 用于动态配置演示
+        dynamicConfigService.addConfigListener("demo", "app=default",
+                new DynamicConfigListener() {
+                    @Override
+                    public void process(DynamicConfigEvent event) {
+                        System.out.println("插件配置项发生变化，配置项值为：" + event.getContent());
+                    }
+                });
     }
 
     @Override

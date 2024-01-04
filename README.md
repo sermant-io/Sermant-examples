@@ -2,7 +2,7 @@
 
 |        示例名称        |                                         插件文档                                         |                       示例项目                       |
 |:------------------:|:------------------------------------------------------------------------------------:|:------------------------------------------------:|
-|     去源码插件开发模板      |             [去源码插件开发说明](https://sermant.io/zh/document/developer-guide/)             |      [sermant-template](./sermant-template)      |
+|     去源码插件开发模板      |             [去源码插件开发说明](https://sermant.io/zh/document/developer-guide/)             |      [first-plugin-demo](./first-plugin-demo)      |
 |     动态配置插件使用示例     |       [动态配置插件使用说明](https://sermant.io/zh/document/plugin/dynamic-config.html)        |      [flowcontrol-demo](./flowcontrol-demo)      |
 |      流控插件使用示例      |          [流控插件使用说明](https://sermant.io/zh/document/plugin/flowcontrol.html)          |      [flowcontrol-demo](./flowcontrol-demo)      |
 |    无损上下线插件使用示例     |          [无损上下线插件使用说明](https://sermant.io/zh/document/plugin/graceful.html)          |            [grace-demo](./grace-demo)            |
@@ -14,6 +14,7 @@
 | SpringBoot注册插件使用示例 | [SpringBoot注册插件使用说明](https://sermant.io/zh/document/plugin/springboot-registry.html) |         [registry-demo](./registry-demo)         |
 |    服务可见性插件使用示例     |         [服务可见性插件使用说明](https://sermant.io/zh/document/plugin/visibility.html)         |       [visibility-demo](./visibility-demo)       |
 |    离群实例摘除插件使用示例    |          [离群实例摘除插件使用说明](https://sermant.io/zh/document/plugin/removal.html)          |          [removal-demo](./removal-demo)          |
+|    消息队列禁止消费插件使用示例    |          [消息队列禁止消费插件使用说明](https://sermant.io/zh/document/plugin/mq-consume-prohibition.html)  |    [mq-consume-prohibition-demo](./mq-consume-prohibition-demo) |
 
 # RELEASE打包流程
 
