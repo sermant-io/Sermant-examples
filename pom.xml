@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>sermant-template</module>
+        <module>first-plugin-demo</module>
         <module>registry-demo</module>
         <module>router-demo</module>
         <module>flowcontrol-demo</module>
