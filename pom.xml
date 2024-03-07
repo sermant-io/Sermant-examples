@@ -20,6 +20,7 @@
         <module>monitor-demo</module>
         <module>mq-consume-prohibition-demo</module>
         <module>loadbalancer-demo</module>
+        <module>database-write-prohibition-demo</module>
     </modules>
 
     <properties>

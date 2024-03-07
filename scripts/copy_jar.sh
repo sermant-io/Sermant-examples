@@ -24,6 +24,7 @@ mkdir -p package/springboot-registry-demo
 mkdir -p package/visibility-demo
 mkdir -p package/removal-demo
 mkdir -p package/mq-consume-prohibition-demo
+mkdir -p package/database-write-prohibition-demo
 mkdir -p package/first-plugin-demo
 
 # 按照文件名模式将对应的jar文件复制到对应目录
@@ -62,6 +63,8 @@ find . -type f -name "dubbo-integration-provider.jar" -exec cp -v {} package/vis
 find . -type f -name "dubbo-integration-consumer.jar" -exec cp -v {} package/visibility-demo/ \;
 # 消息队列禁止消费
 find . -type f -name "kafka-demo.jar" -exec cp -v {} package/mq-consume-prohibition-demo \;
+# 数据库禁消费
+find . -type f -name "mongodb-demo.jar" -exec cp -v {} package/database-write-prohibition-demo \;
 # 离群实例摘除
 find . -type f -name "rest-consumer.jar" -exec cp -v {} package/removal-demo/ \;
 find . -type f -name "rest-provider.jar" -exec cp -v {} package/removal-demo/ \;
@@ -81,3 +84,4 @@ tar -czvf package/result/sermant-examples-springboot-registry-demo-$*.tar.gz -C 
 tar -czvf package/result/sermant-examples-visibility-demo-$*.tar.gz -C package/visibility-demo/ .
 tar -czvf package/result/sermant-examples-removal-demo-$*.tar.gz -C package/removal-demo/ .
 tar -czvf package/result/sermant-examples-mq-consume-prohibition-demo-$*.tar.gz -C package/mq-consume-prohibition-demo/ .
+tar -czvf package/result/sermant-examples-database-write-prohibition-demo-$*.tar.gz -C package/database-write-prohibition-demo/ .
