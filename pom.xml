@@ -19,6 +19,7 @@
         <module>removal-demo</module>
         <module>monitor-demo</module>
         <module>mq-consume-prohibition-demo</module>
+        <module>loadbalancer-demo</module>
     </modules>
 
     <properties>
