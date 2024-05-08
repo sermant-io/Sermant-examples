@@ -1,48 +1,49 @@
-# 工程介绍
+# Project Introduction
+[简体中文](README_zh.md) | [English](README.md)
 
-|        示例名称        |                                         插件文档                                         |                       示例项目                       |
+|        Usage example       |                                         Plugin document                                         |                       Sample project                       |
 |:------------------:|:------------------------------------------------------------------------------------:|:------------------------------------------------:|
-|     去源码插件开发模板      |             [去源码插件开发说明](https://sermant.io/zh/document/developer-guide/)             |      [first-plugin-demo](./first-plugin-demo)      |
-|     动态配置插件使用示例     |       [动态配置插件使用说明](https://sermant.io/zh/document/plugin/dynamic-config.html)        |      [flowcontrol-demo](./flowcontrol-demo)      |
-|      流控插件使用示例      |          [流控插件使用说明](https://sermant.io/zh/document/plugin/flowcontrol.html)          |      [flowcontrol-demo](./flowcontrol-demo)      |
-|    无损上下线插件使用示例     |          [无损上下线插件使用说明](https://sermant.io/zh/document/plugin/graceful.html)          |            [grace-demo](./grace-demo)            |
-|     负载均衡插件使用示例     |        [负载均衡插件使用说明](https://sermant.io/zh/document/plugin/loadbalancer.html)         |     [loadbalancer-demo](./loadbalancer-demo)     |
-|      监控插件使用示例      |            [监控插件使用说明](https://sermant.io/zh/document/plugin/monitor.html)            |          [monitor-demo](./monitor-demo)          |
-|     标签路由插件使用示例     |           [标签路由插件使用说明](https://sermant.io/zh/document/plugin/router.html)            |           [router-demo](./router-demo)           |
-|    流量标签透传插件使用示例    |     [流量标签透传插件使用说明](https://sermant.io/zh/document/plugin/tag-transmission.html)      | [tag-transmission-demo](./tag-transmission-demo) |
-|     注册迁移插件使用示例     |     [注册迁移插件使用说明](https://sermant.io/zh/document/plugin/register-migration.html)      |         [registry-demo](./registry-demo)         |
-| SpringBoot注册插件使用示例 | [SpringBoot注册插件使用说明](https://sermant.io/zh/document/plugin/springboot-registry.html) |         [registry-demo](./registry-demo)         |
-|    服务可见性插件使用示例     |         [服务可见性插件使用说明](https://sermant.io/zh/document/plugin/visibility.html)         |       [visibility-demo](./visibility-demo)       |
-|    离群实例摘除插件使用示例    |          [离群实例摘除插件使用说明](https://sermant.io/zh/document/plugin/removal.html)          |          [removal-demo](./removal-demo)          |
-|    消息队列禁止消费插件使用示例    |          [消息队列禁止消费插件使用说明](https://sermant.io/zh/document/plugin/mq-consume-prohibition.html)  |    [mq-consume-prohibition-demo](./mq-consume-prohibition-demo) |
+|     Plugin development template      |             [Plugin development template](https://sermant.io/zh/document/developer-guide/)             |      [first-plugin-demo](./first-plugin-demo)      |
+|     Dynamic configuration plugin     |       [Dynamic configuration plugin](https://sermant.io/zh/document/plugin/dynamic-config.html)        |      [flowcontrol-demo](./flowcontrol-demo)      |
+|      Flow control plugin      |          [Flow control plugin ](https://sermant.io/zh/document/plugin/flowcontrol.html)          |      [flowcontrol-demo](./flowcontrol-demo)      |
+|    Lossless online and offline plugin    |          [Lossless online and offline plugin](https://sermant.io/zh/document/plugin/graceful.html)          |            [grace-demo](./grace-demo)            |
+|     Load balancer plugin     |        [Load balancer plugin](https://sermant.io/zh/document/plugin/loadbalancer.html)         |     [loadbalancer-demo](./loadbalancer-demo)     |
+|      Monitor plugin      |            [Monitor plugin](https://sermant.io/zh/document/plugin/monitor.html)            |          [monitor-demo](./monitor-demo)          |
+|      Router plugin     |           [Router plugin](https://sermant.io/zh/document/plugin/router.html)            |           [router-demo](./router-demo)           |
+|    Tag transmission plugin    |     [Tag transmission plugin](https://sermant.io/zh/document/plugin/tag-transmission.html)      | [tag-transmission-demo](./tag-transmission-demo) |
+|     Registry plugin     |     [Registry plugin](https://sermant.io/zh/document/plugin/register-migration.html)      |         [registry-demo](./registry-demo)         |
+| SpringBoot registry plugin | [SpringBoot registry plugin](https://sermant.io/zh/document/plugin/springboot-registry.html) |         [registry-demo](./registry-demo)         |
+|    Visibility plugin     |         [Visibility plugin](https://sermant.io/zh/document/plugin/visibility.html)         |       [visibility-demo](./visibility-demo)       |
+|    Outlier instance removal plugin    |          [Outlier instance removal plugin](https://sermant.io/zh/document/plugin/removal.html)          |          [removal-demo](./removal-demo)          |
+|    MQ consume prohibition plugin    |          [MQ consume prohibition plugin](https://sermant.io/zh/document/plugin/mq-consume-prohibition.html)  |    [mq-consume-prohibition-demo](./mq-consume-prohibition-demo) |
 
-# RELEASE打包流程
+# Release Package
 
-### 步骤一：增加新demo至打包脚本
+### Step 1: Add a new demo to the packaging script
 
-> **若无新增demo，忽略此步**
+> **If no demo is added, skip this step**
 
-在scripts/copy_jar.sh脚本中添加新demo相关命令
+Add new demo related commands to the scripts/copy_jar.sh
 
 ```shell
-# 创建文件夹
+# create folder
 mkdir -p package/xxxxx-demo
-# 复制jar包
+# copy jar
 find . -type f -name "xxxxx-A.jar" -exec cp -v {} package/xxxxx-demo/ \;
 find . -type f -name "xxxxx-B.jar" -exec cp -v {} package/xxxxx-demo/ \;
-# 打包
+# package
 tar -czvf package/result/sermant-examples-xxxxx-demo-$*.tar.gz -C package/xxxxx-demo/ .
 ```
 
-### 步骤二：增加新demo至流水线文件
+### Step 2: Add a new demo to the pipeline file
 
-> **若无新增demo，忽略此步**
+> **If no demo is added, skip this step**
 
-在.github/workflows/create_release.yml流水线文件中添加新demo相关命令
+Add new demo related commands to the .github/workflows/create_release.yml
 
 ```shell
-# 上传release包 ========================
-- name: Upload Release xxxxx-demo # 上传xxxxx-demo release包
+# upload the release package ========================
+- name: Upload Release xxxxx-demo # upload xxxxx demo release package
 id: upload-release-asset-xxxxx
 uses: actions/upload-release-asset@v1.0.2
 env:
@@ -54,12 +55,12 @@ with:
   asset_content_type: application/tar
 ```
 
-最后提交并合入上述修改
+Finally, submit and merge  above changes
 
-### 步骤三：创建新tag并推送
+### Step 3: Create a new tag and push it
 
 ```shell
 git tag vx.x.x
 ```
 
-> 此步骤需拥有仓库直推权限
+> This step requires direct push permission to this repository.
