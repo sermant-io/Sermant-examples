@@ -1,14 +1,14 @@
-package com.huaweicloud.sermant.template;
+package io.sermant.template;
 
-import com.huaweicloud.sermant.core.common.LoggerFactory;
-import com.huaweicloud.sermant.core.operation.OperationManager;
-import com.huaweicloud.sermant.core.operation.converter.api.YamlConverter;
-import com.huaweicloud.sermant.core.plugin.agent.entity.ExecuteContext;
-import com.huaweicloud.sermant.core.plugin.agent.interceptor.Interceptor;
-import com.huaweicloud.sermant.core.service.ServiceManager;
-import com.huaweicloud.sermant.core.service.dynamicconfig.DynamicConfigService;
-import com.huaweicloud.sermant.core.service.dynamicconfig.common.DynamicConfigEvent;
-import com.huaweicloud.sermant.core.service.dynamicconfig.common.DynamicConfigListener;
+import io.sermant.core.common.LoggerFactory;
+import io.sermant.core.operation.OperationManager;
+import io.sermant.core.operation.converter.api.YamlConverter;
+import io.sermant.core.plugin.agent.entity.ExecuteContext;
+import io.sermant.core.plugin.agent.interceptor.Interceptor;
+import io.sermant.core.service.ServiceManager;
+import io.sermant.core.service.dynamicconfig.DynamicConfigService;
+import io.sermant.core.service.dynamicconfig.common.DynamicConfigEvent;
+import io.sermant.core.service.dynamicconfig.common.DynamicConfigListener;
 
 import java.util.HashMap;
 import java.util.Map;
