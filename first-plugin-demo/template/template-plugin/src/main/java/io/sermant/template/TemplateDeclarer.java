@@ -1,11 +1,9 @@
-package com.huaweicloud.sermant.template;
+package io.sermant.template;
 
-import com.huaweicloud.sermant.core.plugin.agent.declarer.AbstractPluginDeclarer;
-import com.huaweicloud.sermant.core.plugin.agent.declarer.InterceptDeclarer;
-import com.huaweicloud.sermant.core.plugin.agent.entity.ExecuteContext;
-import com.huaweicloud.sermant.core.plugin.agent.interceptor.Interceptor;
-import com.huaweicloud.sermant.core.plugin.agent.matcher.ClassMatcher;
-import com.huaweicloud.sermant.core.plugin.agent.matcher.MethodMatcher;
+import io.sermant.core.plugin.agent.declarer.AbstractPluginDeclarer;
+import io.sermant.core.plugin.agent.declarer.InterceptDeclarer;
+import io.sermant.core.plugin.agent.matcher.ClassMatcher;
+import io.sermant.core.plugin.agent.matcher.MethodMatcher;
 
 /**
  * 模板字节码增强声明
