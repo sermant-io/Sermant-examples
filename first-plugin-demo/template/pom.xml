@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.huaweicloud.sermant</groupId>
+        <groupId>io.sermant</groupId>
         <artifactId>first-plugin-demo</artifactId>
-        <version>1.2.0</version>
+        <version>2.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -94,7 +95,7 @@
                 <configuration>
                     <artifactItems>
                         <artifactItem>
-                            <groupId>com.huaweicloud.sermant</groupId>
+                            <groupId>io.sermant</groupId>
                             <artifactId>sermant-agentcore-premain</artifactId>
                             <version>${project.version}</version>
                             <type>jar</type>
@@ -103,7 +104,7 @@
                             <destFileName>sermant-agent.jar</destFileName>
                         </artifactItem>
                         <artifactItem>
-                            <groupId>com.huaweicloud.sermant</groupId>
+                            <groupId>io.sermant</groupId>
                             <artifactId>sermant-agentcore-core</artifactId>
                             <version>${project.version}</version>
                             <type>jar</type>
@@ -111,7 +112,7 @@
                             <outputDirectory>${output.basedir}/agent/core</outputDirectory>
                         </artifactItem>
                         <artifactItem>
-                            <groupId>com.huaweicloud.sermant</groupId>
+                            <groupId>io.sermant</groupId>
                             <artifactId>sermant-agentcore-implement</artifactId>
                             <version>${project.version}</version>
                             <type>jar</type>
@@ -119,7 +120,7 @@
                             <outputDirectory>${output.basedir}/agent/implement</outputDirectory>
                         </artifactItem>
                         <artifactItem>
-                            <groupId>com.huaweicloud.sermant</groupId>
+                            <groupId>io.sermant</groupId>
                             <artifactId>sermant-common</artifactId>
                             <version>${project.version}</version>
                             <type>jar</type>
@@ -127,7 +128,7 @@
                             <outputDirectory>${output.basedir}/agent/common</outputDirectory>
                         </artifactItem>
                         <artifactItem>
-                            <groupId>com.huaweicloud.sermant</groupId>
+                            <groupId>io.sermant</groupId>
                             <artifactId>sermant-agentcore-god</artifactId>
                             <version>${project.version}</version>
                             <type>jar</type>
