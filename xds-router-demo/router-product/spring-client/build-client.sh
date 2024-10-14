@@ -1,0 +1,1 @@
+docker build -f Dockerfile -t spring-client:1.0.0 .
