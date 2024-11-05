@@ -23,6 +23,7 @@
         <module>database-write-prohibition-demo</module>
         <module>xds-service-discovery-demo</module>
         <module>xds-router-demo</module>
+        <module>mq-gray-demo</module>
     </modules>
 
     <properties>
