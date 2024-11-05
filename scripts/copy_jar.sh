@@ -11,7 +11,7 @@ mkdir -p package
 # 存放最终产物
 mkdir -p package/result
 
-# 动态配置、流控、无损上下线、负载均衡(sermant-template)、监控、标签路由、流量标签透传、注册迁移、springboot注册、服务可见性、离群实例摘除
+# 动态配置、流控、无损上下线、负载均衡(sermant-template)、监控、标签路由、流量标签透传、注册迁移、springboot注册、服务可见性、离群实例摘除、RocketMq消息灰度
 mkdir -p package/dynamic-demo
 mkdir -p package/flowcontrol-demo
 mkdir -p package/grace-demo
@@ -28,6 +28,7 @@ mkdir -p package/database-write-prohibition-demo
 mkdir -p package/first-plugin-demo
 mkdir -p package/xds-service-discovery-demo
 mkdir -p package/xds-router-demo
+mkdir -p package/mq-gray-demo
 
 # 按照文件名模式将对应的jar文件复制到对应目录
 # 创建首个插件
@@ -74,6 +75,9 @@ find . -type f -name "mongodb-demo.jar" -exec cp -v {} package/database-write-pr
 # 离群实例摘除
 find . -type f -name "rest-consumer.jar" -exec cp -v {} package/removal-demo/ \;
 find . -type f -name "rest-provider.jar" -exec cp -v {} package/removal-demo/ \;
+# RocketMq消息灰度
+find . -type f -name "rocketmq-gray-consumer-demo.jar" -exec cp -v {} package/mq-gray-demo/ \;
+find . -type f -name "rocketmq-gray-producer-demo.jar" -exec cp -v {} package/mq-gray-demo/ \;
 
 
 # 打包
@@ -93,3 +97,4 @@ tar -czvf package/result/sermant-examples-visibility-demo-$*.tar.gz -C package/v
 tar -czvf package/result/sermant-examples-removal-demo-$*.tar.gz -C package/removal-demo/ .
 tar -czvf package/result/sermant-examples-mq-consume-prohibition-demo-$*.tar.gz -C package/mq-consume-prohibition-demo/ .
 tar -czvf package/result/sermant-examples-database-write-prohibition-demo-$*.tar.gz -C package/database-write-prohibition-demo/ .
+tar -czvf package/result/sermant-examples-mq-gray-demo-$*.tar.gz -C package/mq-gray-demo/ .
