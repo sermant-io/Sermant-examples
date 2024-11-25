@@ -27,6 +27,8 @@ spec:
           value: "true"
         - name: ZOOKEEPER_ENABLED
           value: "false"
+        - name: MYSQL_ENABLED
+          value: "false"
         - name: JAVA_TOOL_OPTIONS
           value: "-javaagent:/home/agent/sermant-agent.jar"
       imagePullSecrets:

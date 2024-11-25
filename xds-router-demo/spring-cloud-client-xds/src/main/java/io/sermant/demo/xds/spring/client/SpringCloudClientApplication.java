@@ -16,8 +16,11 @@
 
 package io.sermant.demo.xds.spring.client;
 
+import io.sermant.demo.xds.spring.client.config.MySqlConfig;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * SpringCloudClientApplication
@@ -26,6 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2024-09-23
  **/
 @SpringBootApplication
+@EnableConfigurationProperties(MySqlConfig.class)
 public class SpringCloudClientApplication {
     /**
      * main
