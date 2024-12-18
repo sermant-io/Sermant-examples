@@ -20,6 +20,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * RouterServerController
  *
@@ -28,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class RouterServerController {
+    private static final int ITERATION_COUNT = 15000;
+
     @Value("${SERVER_VERSION:v1}")
     private String version;
 
@@ -37,7 +42,20 @@ public class RouterServerController {
      * @return result
      */
     @RequestMapping("router")
-    public String router() {
-        return "spring-server version: " + version;
+    public String router() throws UnknownHostException {
+        StringBuilder builder = new StringBuilder();
+        builder.append("spring-server version: ");
+        builder.append(version);
+        builder.append("; spring-server ip: ");
+        builder.append(InetAddress.getLocalHost().getHostAddress());
+        mockRealLogic();
+        return builder.toString();
+    }
+
+    private void mockRealLogic() {
+        double result = 0.0;
+        for (int i = 0; i < ITERATION_COUNT; i++) {
+            result += Math.sin(i) * Math.cos(i);
+        }
     }
 }
