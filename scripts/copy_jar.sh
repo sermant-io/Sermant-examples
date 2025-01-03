@@ -34,9 +34,9 @@ mkdir -p package/mq-gray-demo
 # 创建首个插件
 find . -type d -name "agent" -exec cp -rv {} package/first-plugin-demo/ \;
 # xDS服务发现
-find . -type d -name "product" -exec cp -rv {} package/xds-service-discovery-demo/ \;
+cp -rv ./xds-service-discovery-demo/product package/xds-service-discovery-demo/
 # xDS路由
-find . -type d -name "router-product" -exec cp -rv {} package/xds-router-demo/ \;
+cp -rv ./xds-router-demo/router-product package/xds-router-demo/
 # 动态配置
 find . -type f -name "spring-provider.jar" -exec cp -v {} package/dynamic-demo/ \;
 # 流控
