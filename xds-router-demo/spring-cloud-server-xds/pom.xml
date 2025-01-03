@@ -36,7 +36,7 @@
                 <configuration>
                     <mainClass>io.sermant.demo.xds.spring.server.SpringCloudServerApplication</mainClass>
                     <finalName>spring-server</finalName>
-                    <outputDirectory>${pom.basedir}/../router-product/spring-server</outputDirectory>
+                    <outputDirectory>${pom.basedir}/../product/spring-server</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -61,7 +61,7 @@
                         <configuration>
                             <filesets>
                                 <fileset>
-                                    <directory>${pom.basedir}/../router-product/spring-server</directory>
+                                    <directory>${pom.basedir}/../product/spring-server</directory>
                                     <includes>
                                         <include>spring-server.jar</include>
                                     </includes>
