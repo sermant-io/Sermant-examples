@@ -7,3 +7,8 @@ spring:
       enabled: ${ZOOKEEPER_ENABLED:false}
 server:
   port: 8080
+mysql:
+  address: jdbc:mariadb://mysql.default.svc.cluster.local:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+  user: ${MYSQL_USER:root}
+  password: ${MYSQL_PASSWORD:}
+  enabled: ${MYSQL_ENABLED:false}

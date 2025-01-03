@@ -16,6 +16,7 @@
 
 package io.sermant.demo.xds.spring.client;
 
+import io.sermant.demo.xds.spring.client.config.MySqlConfig;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,6 +24,7 @@ import okhttp3.Request;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -33,6 +35,7 @@ import org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager;
 import org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor;
 import org.apache.http.nio.reactor.IOReactorException;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -47,6 +50,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -59,7 +67,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @RequestMapping("router")
 @RestController
-public class SpringRouterController {
+public class SpringRouterController implements InitializingBean {
     private static final String VERSION = "version";
 
     private static final int SUCCEED_CODE = 200;
@@ -76,14 +84,25 @@ public class SpringRouterController {
 
     private static final int KEEP_ALIVE_TIME = 10;
 
+    private static final int SLEEP_TIME = 5000;
+
+    private static final String DATABASE_TABLE_NAME = "table_test";
+
+    private static final int ITERATION_COUNT = 13000;
+
     private static CloseableHttpClient httpClient;
 
     private static CloseableHttpAsyncClient httpAsyncClient;
 
     private static OkHttpClient okClient;
 
+    private Connection mySqlConnection;
+
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private MySqlConfig mySqlConfig;
 
     static {
         System.setProperty("http.keepAlive", "true");
@@ -139,15 +158,14 @@ public class SpringRouterController {
      */
     @RequestMapping("httpClient")
     public String testHttpClientRouting(String host, String version) {
+        mockDataBase(DATABASE_TABLE_NAME);
         String url = buildUrl(host);
-        try {
-            HttpGet request = new HttpGet(url);
-            request.addHeader(VERSION, version);
-            HttpResponse response = httpClient.execute(request);
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode == HttpStatus.SC_OK) {
+        HttpGet request = new HttpGet(url);
+        request.addHeader(VERSION, version);
+        try (CloseableHttpResponse response = httpClient.execute(request)) {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
-                mockRealLogic(result);
+                mockRealLogic();
                 return result;
             } else {
                 return "";
@@ -166,6 +184,7 @@ public class SpringRouterController {
      */
     @RequestMapping("jdkHttp")
     public String testJdkHttpRouting(String host, String version) {
+        mockDataBase(DATABASE_TABLE_NAME);
         String url = buildUrl(host);
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -183,7 +202,7 @@ public class SpringRouterController {
                     response.append(line);
                 }
                 String result = response.toString();
-                mockRealLogic(result);
+                mockRealLogic();
                 return result;
             } else {
                 return "";
@@ -213,16 +232,16 @@ public class SpringRouterController {
      */
     @RequestMapping("okHttp3")
     public String testOkHttp3Routing(String host, String version) {
+        mockDataBase(DATABASE_TABLE_NAME);
         String url = buildUrl(host);
         Request request = new okhttp3.Request.Builder()
                 .url(url)
                 .addHeader(VERSION, version)
                 .build();
         try (okhttp3.Response response = okClient.newCall(request).execute()) {
-            int statusCode = response.code();
-            if (statusCode == SUCCEED_CODE) {
+            if (response.code() == SUCCEED_CODE) {
                 String result = response.body().string();
-                mockRealLogic(result);
+                mockRealLogic();
                 return result;
             } else {
                 return "";
@@ -241,16 +260,16 @@ public class SpringRouterController {
      */
     @RequestMapping("httpAsyncClient")
     public String testHttpAsyncClientRouting(String host, String version) {
+        mockDataBase(DATABASE_TABLE_NAME);
         String url = buildUrl(host);
         try {
             HttpGet request = new HttpGet(url);
             request.setHeader(VERSION, version);
             Future<HttpResponse> future = httpAsyncClient.execute(request, null);
             HttpResponse response = future.get();
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode == HttpStatus.SC_OK) {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
-                mockRealLogic(result);
+                mockRealLogic();
                 return result;
             } else {
                 return "";
@@ -269,6 +288,7 @@ public class SpringRouterController {
      */
     @RequestMapping("restTemplate")
     public String testRestTemplateRouting(String host, String version) {
+        mockDataBase(DATABASE_TABLE_NAME);
         String url = buildUrl(host);
         HttpHeaders headers = new HttpHeaders();
         headers.add(VERSION, version);
@@ -281,7 +301,7 @@ public class SpringRouterController {
         );
         if (response.getStatusCode().is2xxSuccessful()) {
             String result = response.getBody();
-            mockRealLogic(result);
+            mockRealLogic();
             return result;
         }
         return "";
@@ -295,17 +315,38 @@ public class SpringRouterController {
         return urlBuilder.toString();
     }
 
-    private void mockRealLogic(String result) {
-        int i = 300;
-        String tempString = "";
-        while (i >= 0) {
-            if (result.contains("message")) {
-                tempString = "getMessage";
-            } else {
-                tempString = "getTime";
+    private void mockRealLogic() {
+        double result = 0.0;
+        for (int i = 0; i < ITERATION_COUNT; i++) {
+            result += Math.sin(i) * Math.cos(i);
+        }
+    }
+
+    private void mockDataBase(String table) {
+        if (mySqlConfig.isEnabled()) {
+            selectData(table);
+        }
+    }
+
+    private void selectData(String table) {
+        try (Statement statement = mySqlConnection.createStatement()) {
+            String selectQuery = "SELECT * FROM " + table + " WHERE id > 5001 AND age > 30 LIMIT 5";
+            ResultSet resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                resultSet.getInt("id");
+                resultSet.getString("name");
+                resultSet.getInt("age");
             }
-            tempString.split("");
-            i--;
+        } catch (SQLException e) {
+        }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (mySqlConfig.isEnabled()) {
+            Thread.sleep(SLEEP_TIME);
+            mySqlConnection = DriverManager.getConnection(mySqlConfig.getAddress(),
+                    mySqlConfig.getUser(), mySqlConfig.getPassword());
         }
     }
 }

@@ -17,6 +17,7 @@
         <httpclient.version>4.5.13</httpclient.version>
         <okhttp3.version>4.9.3</okhttp3.version>
         <httpclient.async.version>4.1.5</httpclient.async.version>
+        <mariadb.version>3.3.2</mariadb.version>
     </properties>
 
     <dependencies>
@@ -46,6 +47,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpasyncclient</artifactId>
             <version>${httpclient.async.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${mariadb.version}</version>
         </dependency>
     </dependencies>
 

@@ -14,31 +14,25 @@
  *   limitations under the License.
  */
 
-package io.sermant.demo.xds.spring.client.config;
+package io.sermant.demo.grayscale.rocketmq.consumer;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * RestTemplateConfig
+ * springboot starter
  *
- * @author daizhenyu
- * @since 2024-09-23
+ * @author chengyouling
+ * @since 2024-10-30
  **/
-@Configuration
-public class RestTemplateConfig {
+@SpringBootApplication
+public class RocketMqConsumerApplication {
     /**
-     * RestTemplate bean
+     * main run
      *
-     * @return RestTemplate bean
+     * @param args parameter
      */
-    @Bean
-    @ConditionalOnMissingBean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public static void main(String[] args) {
+        SpringApplication.run(RocketMqConsumerApplication.class, args);
     }
 }
