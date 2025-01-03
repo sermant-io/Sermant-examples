@@ -64,7 +64,7 @@
                 <configuration>
                     <mainClass>io.sermant.demo.xds.spring.client.SpringCloudClientApplication</mainClass>
                     <finalName>spring-client</finalName>
-                    <outputDirectory>${pom.basedir}/../router-product/spring-client</outputDirectory>
+                    <outputDirectory>${pom.basedir}/../product/spring-client</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -89,7 +89,7 @@
                         <configuration>
                             <filesets>
                                 <fileset>
-                                    <directory>${pom.basedir}/../router-product/spring-client</directory>
+                                    <directory>${pom.basedir}/../product/spring-client</directory>
                                     <includes>
                                         <include>spring-client.jar</include>
                                     </includes>
