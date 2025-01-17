@@ -21,8 +21,7 @@
         <module>mq-consume-prohibition-demo</module>
         <module>loadbalancer-demo</module>
         <module>database-write-prohibition-demo</module>
-        <module>xds-service-discovery-demo</module>
-        <module>xds-router-demo</module>
+        <module>xds-demo</module>
         <module>mq-gray-demo</module>
     </modules>
 
