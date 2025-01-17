@@ -186,25 +186,15 @@ jobs:
           asset_path: ${{ github.workspace }}/package/result/sermant-examples-first-plugin-demo-${{ env.version }}.tar.gz
           asset_name: sermant-examples-first-plugin-demo-${{ env.version }}.tar.gz
           asset_content_type: application/tar
-      - name: Upload Release xds-service-discovery-demo # xds-service-discovery-demo release包
-        id: upload-release-asset-xds-service-discovery
+      - name: Upload Release xds-demo # xds-demo release包
+        id: upload-release-asset-xds
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/package/result/sermant-examples-xds-service-discovery-demo-${{ env.version }}.tar.gz
-          asset_name: sermant-examples-xds-service-discovery-demo-${{ env.version }}.tar.gz
-          asset_content_type: application/tar
-      - name: Upload Release xds-router-demo # xds-router-demo release包
-        id: upload-release-asset-xds-router
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/package/result/sermant-examples-xds-router-demo-${{ env.version }}.tar.gz
-          asset_name: sermant-examples-xds-router-demo-${{ env.version }}.tar.gz
+          asset_path: ${{ github.workspace }}/package/result/sermant-examples-xds-demo-${{ env.version }}.tar.gz
+          asset_name: sermant-examples-xds-demo-${{ env.version }}.tar.gz
           asset_content_type: application/tar
       - name: Upload Release mq-gray-demo # rocketmq-gray-demo release包
         id: upload-release-mq-gray

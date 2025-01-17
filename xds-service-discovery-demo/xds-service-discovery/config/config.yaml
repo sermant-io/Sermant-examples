@@ -1,2 +1,0 @@
-xds.service.discovery:
-  upstreamServiceName: spring-server

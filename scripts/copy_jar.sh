@@ -26,17 +26,14 @@ mkdir -p package/removal-demo
 mkdir -p package/mq-consume-prohibition-demo
 mkdir -p package/database-write-prohibition-demo
 mkdir -p package/first-plugin-demo
-mkdir -p package/xds-service-discovery-demo
-mkdir -p package/xds-router-demo
+mkdir -p package/xds-demo
 mkdir -p package/mq-gray-demo
 
 # 按照文件名模式将对应的jar文件复制到对应目录
 # 创建首个插件
 find . -type d -name "agent" -exec cp -rv {} package/first-plugin-demo/ \;
-# xDS服务发现
-cp -rv ./xds-service-discovery-demo/product package/xds-service-discovery-demo/
 # xDS路由
-cp -rv ./xds-router-demo/router-product package/xds-router-demo/
+cp -rv ./xds-demo/product package/xds-demo/
 # 动态配置
 find . -type f -name "spring-provider.jar" -exec cp -v {} package/dynamic-demo/ \;
 # 流控
@@ -82,8 +79,7 @@ find . -type f -name "rocketmq-gray-producer-demo.jar" -exec cp -v {} package/mq
 
 # 打包
 tar -czvf package/result/sermant-examples-first-plugin-demo-$*.tar.gz -C package/first-plugin-demo/ .
-tar -czvf package/result/sermant-examples-xds-service-discovery-demo-$*.tar.gz -C package/xds-service-discovery-demo/ .
-tar -czvf package/result/sermant-examples-xds-router-demo-$*.tar.gz -C package/xds-router-demo/ .
+tar -czvf package/result/sermant-examples-xds-demo-$*.tar.gz -C package/xds-demo/ .
 tar -czvf package/result/sermant-examples-dynamic-demo-$*.tar.gz -C package/dynamic-demo/ .
 tar -czvf package/result/sermant-examples-flowcontrol-demo-$*.tar.gz -C package/flowcontrol-demo/ .
 tar -czvf package/result/sermant-examples-grace-demo-$*.tar.gz -C package/grace-demo/ .
